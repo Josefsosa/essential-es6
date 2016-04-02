@@ -37,7 +37,7 @@ gulp.task('copyIndex', function()
 gulp.task('watchFiles', function()
 {
   gulp.watch('src/index.html', ['copyIndex']);
-  gulp.watch('src/**/*.js', ['babelIt']);
+  gulp.watch('src/**/*.js', ['copyJS']);
 });
 
 //Babel task
@@ -54,11 +54,19 @@ gulp.task('babelIt', function()
 
 });
 
+gulp.task('copyJS', function()
+{
+  return gulp.src('src/**/*.js')
+      .pipe(gulp.dest('./build'))
+      .pipe(browserSync.reload({stream: true}));
+
+});
+
 gulp.task('clean', function()
 {
   return gulp.src('./build/*.*',{read: false})
       .pipe(clean());
 });
 
-gulp.task('default', ['clean', 'copyIndex', 'babelIt', 'browserSync', 'watchFiles' ]);
+gulp.task('default', ['clean', 'copyIndex', 'copyJS', 'browserSync', 'watchFiles' ]);
 

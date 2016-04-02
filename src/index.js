@@ -79,13 +79,16 @@ var dog = new Dogs()
 dog.barks()
 
 /*
-* Cool real in line string concatenation style
-* */
+* Cool real in line template strings concatenation style
+ */
 let car = 'ferarri'
 let sound = 'zoom zoom'
 
 console.log(`the red ${car} goes ${sound}`)
 
+/*
+ * destructuring
+ */
 let cat = 'symiese'
 let sonos = 'miaoo'
 let petco = {cat, sonos}
@@ -113,7 +116,8 @@ function cabritos3(...tepos){
   console.log(tepos)
 }
 cabritos3('cabrones', 'chingones', 'reteputos', 'more')
-console.log(cabritos3().toString())
+
+
 
 
 
