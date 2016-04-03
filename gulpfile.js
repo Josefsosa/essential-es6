@@ -38,6 +38,7 @@ gulp.task('watchFiles', function()
 {
   gulp.watch('src/index.html', ['copyIndex']);
   gulp.watch('src/**/*.js', ['copyJS']);
+  gulp.watch('src/**/*.css', ['copyCSS']);
 });
 
 //Babel task
@@ -62,11 +63,19 @@ gulp.task('copyJS', function()
 
 });
 
+gulp.task('copyCSS', function()
+{
+  return gulp.src('src/**/*.css')
+      .pipe(gulp.dest('./build'))
+      .pipe(browserSync.reload({stream: true}));
+
+});
+
 gulp.task('clean', function()
 {
   return gulp.src('./build/*.*',{read: false})
       .pipe(clean());
 });
 
-gulp.task('default', ['clean', 'copyIndex', 'copyJS', 'browserSync', 'watchFiles' ]);
+gulp.task('default', ['clean', 'copyIndex', 'copyCSS', 'copyJS', 'browserSync', 'watchFiles' ]);
 
